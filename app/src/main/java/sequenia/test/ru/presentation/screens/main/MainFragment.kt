@@ -7,10 +7,13 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.onEach
 import sequenia.test.ru.databinding.FragmentMainBinding
 import sequenia.test.ru.presentation.screens.utils.observeInLifecycle
 
+@AndroidEntryPoint
 class MainFragment: Fragment() {
 
     private var _binding: FragmentMainBinding? = null
@@ -42,35 +45,29 @@ class MainFragment: Fragment() {
                 loadingView.visibility = if(state is MainState.Loading) View.VISIBLE else View.GONE
 
                 if(state is MainState.Empty) {
-                    context?.let {
-                        AlertDialog
-                            .Builder(it)
-                            .setTitle("Error")
-                            .setMessage("you weren't looking for anything")
-                            .setNegativeButton("Ok") { _, _ -> }
-                            .show()
-                    }
+                    Snackbar
+                        .make(binding.root, "пусто", Snackbar.LENGTH_INDEFINITE)
+                        .setAction("повторить") {
+
+                        }
+                        .show()
                 }
 
                 if(state is MainState.Error) {
                    if (state.isNoConnectionError) {
-                       context?.let {
-                           AlertDialog
-                               .Builder(it)
-                               .setTitle("Error")
-                               .setMessage("Отсутствует интернет")
-                               .setNegativeButton("Ok") { _, _ -> }
-                               .show()
-                       }
+                       Snackbar
+                           .make(binding.root, "пусто", Snackbar.LENGTH_INDEFINITE)
+                           .setAction("повторить") {
+
+                           }
+                           .show()
                    } else {
-                       context?.let {
-                           AlertDialog
-                               .Builder(it)
-                               .setTitle("Error")
-                               .setMessage(state.message)
-                               .setNegativeButton("Ok") { _, _ -> }
-                               .show()
-                       }
+                       Snackbar
+                           .make(binding.root, "${state.message}", Snackbar.LENGTH_INDEFINITE)
+                           .setAction("повторить") {
+
+                           }
+                           .show()
                    }
                 }
 

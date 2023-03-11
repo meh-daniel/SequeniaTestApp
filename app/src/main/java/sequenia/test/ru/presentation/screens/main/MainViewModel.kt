@@ -2,23 +2,26 @@ package sequenia.test.ru.presentation.screens.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import java.net.ConnectException
+import javax.inject.Inject
 
-class MainViewModel: ViewModel() {
+@HiltViewModel
+class MainViewModel @Inject constructor(): ViewModel() {
 
     private val _state = MutableStateFlow<MainState>(MainState.Idle)
     var state = _state.asStateFlow()
 
 
     init {
-        loadRepositories()
+        loadMovie()
     }
 
-    fun loadRepositories() {
+    fun loadMovie() {
         viewModelScope.launch(Dispatchers.IO) {
             setState(MainState.Loading)
             try {
