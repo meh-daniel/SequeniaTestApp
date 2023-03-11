@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SequeniaTestApp</string>
+    <string name="title">фильмы</string>
 </resources>
