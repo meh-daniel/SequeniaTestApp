@@ -1,4 +1,4 @@
-package sequenia.test.ru.presentation.screens.utils
+package sequenia.test.ru.presentation.utils
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
