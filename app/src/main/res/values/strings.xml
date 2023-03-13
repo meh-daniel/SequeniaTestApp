@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">SequeniaTestApp</string>
     <string name="title">фильмы</string>
+    <string name="empty"></string>
+    <string name="movie">Фильмы</string>
+    <string name="genres">Жанры</string>
 </resources>
