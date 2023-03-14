@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">SequeniaTestApp</string>
     <string name="title">фильмы</string>
-    <string name="empty"></string>
+    <string name="empty_really"></string>
+    <string name="empty">пусто</string>
     <string name="movie">Фильмы</string>
     <string name="genres">Жанры</string>
+    <string name="repeat">повторить</string>
+    <string name="kinopoisk">Кинопоиск</string>
 </resources>

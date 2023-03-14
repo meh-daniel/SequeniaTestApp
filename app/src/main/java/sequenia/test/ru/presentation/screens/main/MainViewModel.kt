@@ -31,13 +31,13 @@ class MainViewModel @Inject constructor(
     private val _action: Channel<MainAction> = Channel(Channel.BUFFERED)
     var actionFlow = _action.receiveAsFlow()
 
-    private var currentGenre: Genre = Genre(resourcesProvider.getString(R.string.empty))
+    private var currentGenre: Genre = Genre(resourcesProvider.getString(R.string.empty_really))
 
     init {
         loadMovie()
     }
 
-    private fun loadMovie() {
+    fun loadMovie() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val data: List<MovieUI> =
@@ -79,7 +79,7 @@ class MainViewModel @Inject constructor(
     }
 
     fun clickOnMovie(id: Int) {
-        sendAction(MainAction.onClickMovie(id))
+        sendAction(MainAction.NavigateToDetails(id))
     }
 
     private fun errorSelection(e: Throwable) {
