@@ -24,7 +24,7 @@ class DetailsViewModel @Inject constructor(
     private val _action: Channel<DetailsAction> = Channel(Channel.BUFFERED)
     var actionFlow = _action.receiveAsFlow()
 
-    private var idMovie = 0
+    var idMovie = 0
 
     fun loadData() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -36,6 +36,11 @@ class DetailsViewModel @Inject constructor(
             }
         }
     }
+
+    fun moveBack() {
+        sendAction(DetailsAction.NavigateBackToMain)
+    }
+
     private fun errorSelection(e: Throwable) {
         when (e) {
             is ConnectException -> sendAction(DetailsAction.ShowError(e.message.toString(), true))

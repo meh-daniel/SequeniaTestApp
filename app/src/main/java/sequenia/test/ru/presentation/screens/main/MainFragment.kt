@@ -13,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.onEach
 import sequenia.test.ru.R
 import sequenia.test.ru.databinding.FragmentMainBinding
-import sequenia.test.ru.presentation.utils.observeInLifecycle
+import sequenia.test.ru.utils.observeInLifecycle
 
 private const val ID_MOVIE = "id_movie"
 

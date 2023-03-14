@@ -7,4 +7,7 @@
     <string name="genres">Жанры</string>
     <string name="repeat">повторить</string>
     <string name="kinopoisk">Кинопоиск</string>
+    <string name="no_description">нет описания</string>
+    <string name="zero_zero">0.0</string>
+    <string name="year">год</string>
 </resources>

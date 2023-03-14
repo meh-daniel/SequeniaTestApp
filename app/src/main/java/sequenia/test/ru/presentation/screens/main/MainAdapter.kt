@@ -17,6 +17,7 @@ class MainAdapter(
     private val onClickMovie: (id: Int) -> Unit,
     private val onClickGenre: (genre: MovieUI.Genre) -> Unit,
 ) : ListAdapter<MovieUI, RecyclerView.ViewHolder>(MainAdapterDiffUtil()) {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = when(viewType){
         R.layout.item_movie -> MovieHolder.from(parent, onClickMovie)
         R.layout.item_genre -> GenreHolder.from(parent, onClickGenre)
@@ -38,18 +39,24 @@ class MainAdapter(
         else -> throw Exception("getItemViewType unknown item class exception from position: $position")
     }
 
-
 }
 
 class MovieHolder(private val binding: ItemMovieBinding, private val onClickMovie: (id: Int) -> Unit) : RecyclerView.ViewHolder(binding.root){
 
     fun bind(item: MovieUI.Movie){
         with(binding){
-            titleFilm.text = item.name
-            Glide
-                .with(img)
-                .load(item.imageUrl)
-                .into(img)
+            titleFilm.text = item.localizedName
+            if(item.imageUrl.isEmpty()){
+                Glide
+                    .with(img)
+                    .load(R.drawable.not_found_image)
+                    .into(img)
+            } else {
+                Glide
+                    .with(img)
+                    .load(item.imageUrl)
+                    .into(img)
+            }
         }
         onClick(item.id)
     }

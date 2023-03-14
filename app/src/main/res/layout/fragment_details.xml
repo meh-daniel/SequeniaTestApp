@@ -21,10 +21,10 @@
 
             <ImageView
                 android:id="@+id/vector"
-                android:layout_width="18dp"
-                android:layout_height="12dp"
-                android:layout_marginVertical="22px"
-                android:layout_marginStart="19px"
+                android:layout_width="37dp"
+                android:layout_height="0dp"
+                android:paddingVertical="22px"
+                android:paddingStart="19px"
                 android:src="@drawable/vector"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -45,11 +45,14 @@
                 android:textColor="#FFFFFF"
                 android:textAlignment="center"
                 android:textAppearance="@style/title"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textAllCaps="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/vector"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="fsdjf;lasdfjh"/>
+                tools:text="fsdjf;ldfsdfsdfsdfsdfsdfsdfsdfsfsdfsasdfjh"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.appbar.AppBarLayout>
@@ -85,34 +88,38 @@
 
                 <TextView
                     android:id="@+id/nameMovie"
-                    android:layout_width="264dp"
-                    android:layout_height="32dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="24dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:textStyle="bold"
+                    android:textSize="26sp"
+                    android:textColor="#000000"
                     android:gravity="center_vertical"
                     android:lineSpacingExtra="2sp"
                     android:textAppearance="@style/details_name_movie"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/img"
-                    tools:text="Между нами горы"/>
+                    tools:text="Между нами горы" />
 
                 <TextView
                     android:id="@+id/genresMovie"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
+                    android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginStart="16dp"
                     android:gravity="center_vertical"
                     android:lineSpacingExtra="1sp"
                     android:textAppearance="@style/details_genres_movie"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/nameMovie"
-                    tools:text="драма, 2017 год"
-                    />
+                    tools:text="драма, 2017 год" />
 
 
                 <TextView
@@ -149,7 +156,7 @@
                 <TextView
                     android:id="@+id/description"
                     android:layout_width="0dp"
-                    android:layout_height="180dp"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"
