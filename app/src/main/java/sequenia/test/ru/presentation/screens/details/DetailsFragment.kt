@@ -6,8 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.onEach
+import sequenia.test.ru.R
 import sequenia.test.ru.databinding.FragmentDetailsBinding
+import sequenia.test.ru.presentation.utils.observeInLifecycle
 
 @AndroidEntryPoint
 class DetailsFragment: Fragment() {
@@ -38,42 +43,42 @@ class DetailsFragment: Fragment() {
     }
 
     private fun setupSubscriberState() {
-//        viewModel.state.onEach { state ->
-//            with(binding) {
-//                if(state is MainState.Loaded) mainAdapter.submitList(state.data)
-//                loadingView.visibility = if(state is MainState.Loading) View.VISIBLE else View.GONE
-//            }
-//        }.observeInLifecycle(this)
+        viewModel.state.onEach { state ->
+            with(binding) {
+                if(state is DetailsState.Loaded) {
+
+                }
+
+                loadingView.visibility = if(state is DetailsState.Loading) View.VISIBLE else View.GONE
+            }
+        }.observeInLifecycle(this)
     }
 
     private fun setupSubscriberAction() {
-//        viewModel.actionFlow.onEach { action ->
-//            when(action) {
-//                is MainAction.NavigateToDetails -> {
-//                    val bundle = Bundle()
-//                    bundle.putString(ID_REPO, id.toString())
-//                    findNavController().navigate(R.id.action_repositoriesListFragment_to_detailInfoFragment, bundle)
-//                }
-//                is MainAction.ShowError -> {
-//                    if (action.isNoConnectionError) {
-//                        Snackbar
-//                            .make(binding.root, getString(R.string.empty), Snackbar.LENGTH_INDEFINITE)
-//                            .setAction(getString(R.string.repeat)) {
-//                                viewModel.loadMovie()
-//                            }
-//                            .show()
-//                    } else {
-//                        Snackbar
-//                            .make(binding.root, "${action.message}", Snackbar.LENGTH_INDEFINITE)
-//                            .setAction(getString(R.string.repeat)) {
-//                                viewModel.loadMovie()
-//                            }
-//                            .show()
-//                    }
-//                }
-//            }
-//        }.observeInLifecycle(viewLifecycleOwner)
+        viewModel.actionFlow.onEach { action ->
+            when(action) {
+                is DetailsAction.NavigateBackToMain -> {
+                    findNavController().navigate(R.id.action_detailsFragment_to_mainFragment)
+                }
+                is DetailsAction.ShowError -> {
+                    if (action.isNoConnectionError) {
+                        Snackbar
+                            .make(binding.root, getString(R.string.empty), Snackbar.LENGTH_INDEFINITE)
+                            .setAction(getString(R.string.repeat)) {
+                                viewModel.loadData()
+                            }
+                            .show()
+                    } else {
+                        Snackbar
+                            .make(binding.root, action.message, Snackbar.LENGTH_INDEFINITE)
+                            .setAction(getString(R.string.repeat)) {
+                                viewModel.loadData()
+                            }
+                            .show()
+                    }
+                }
+            }
+        }.observeInLifecycle(viewLifecycleOwner)
     }
-
 
 }
