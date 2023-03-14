@@ -44,7 +44,7 @@ class MainViewModel @Inject constructor(
                     mutableListOf(MovieUI.Title(resourcesProvider.getString(R.string.genres))) +
                             repository.getGenre().toUI() +
                             mutableListOf(MovieUI.Title(resourcesProvider.getString(R.string.movie))) +
-                            repository.get().toUI()
+                            repository.getMovies().toUI()
                 setState(MainState.Loaded(data))
             } catch (e: Throwable) {
                 errorSelection(e)
@@ -60,7 +60,7 @@ class MainViewModel @Inject constructor(
                         mutableListOf(MovieUI.Title(resourcesProvider.getString(R.string.genres))) +
                                 repository.getGenre().toUI() +
                                 mutableListOf(MovieUI.Title(resourcesProvider.getString(R.string.movie))) +
-                                repository.get().toUI()
+                                repository.getMovies().toUI()
                     setState(MainState.Loaded(data))
                     currentGenre = Genre(resourcesProvider.getString(R.string.empty))
                 } else {
@@ -68,7 +68,7 @@ class MainViewModel @Inject constructor(
                         mutableListOf(MovieUI.Title(resourcesProvider.getString(R.string.genres))) +
                                 repository.getGenre().toUI(genre.toDomain()) +
                                 mutableListOf(MovieUI.Title(resourcesProvider.getString(R.string.movie))) +
-                                repository.get(genre.toDomain()).toUI()
+                                repository.getMovies(genre.toDomain()).toUI()
                     setState(MainState.Loaded(data))
                     currentGenre = genre.toDomain()
                 }

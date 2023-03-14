@@ -9,11 +9,11 @@ class MovieRepositoryImpl(
     private val api: MovieApi
 ): MovieRepository {
 
-    override suspend fun get(): List<Movie> {
+    override suspend fun getMovies(): List<Movie> {
         return api.getRepositories().toDomain()
     }
 
-    override suspend fun get(genre: Genre): List<Movie> {
+    override suspend fun getMovies(genre: Genre): List<Movie> {
         return selectMovieBy(api.getRepositories().toDomain(), genre)
     }
 
