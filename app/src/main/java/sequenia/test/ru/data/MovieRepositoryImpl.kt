@@ -17,6 +17,10 @@ class MovieRepositoryImpl(
         return selectMovieBy(api.getRepositories().toDomain(), genre)
     }
 
+    override suspend fun getMovie(id: Int): Movie {
+        return searchMovie(api.getRepositories().toDomain(), id)
+    }
+
     override suspend fun getGenre(): List<Genre> {
         return selectGenre(api.getRepositories().toDomain())
     }
@@ -26,7 +30,7 @@ class MovieRepositoryImpl(
     }
 
     private fun selectGenre(films: List<Movie>): List<Genre> {
-        var data = mutableListOf<Genre>()
+        val data = mutableListOf<Genre>()
         films.map {
             it.genres.map {
                 if(!data.contains(it)){
@@ -35,6 +39,12 @@ class MovieRepositoryImpl(
             }
         }
         return data
+    }
+
+    private fun searchMovie(films: List<Movie>,id: Int): Movie {
+        lateinit var movie: Movie
+        films.map { if(it.id == id) movie = it }
+        return movie
     }
 
 }

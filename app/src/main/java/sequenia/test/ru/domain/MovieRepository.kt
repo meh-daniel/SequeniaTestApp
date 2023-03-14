@@ -9,6 +9,8 @@ interface MovieRepository {
 
     suspend fun getMovies(genre: Genre): List<Movie>
 
+    suspend fun getMovie(id: Int): Movie
+
     suspend fun getGenre(): List<Genre>
 
 }
