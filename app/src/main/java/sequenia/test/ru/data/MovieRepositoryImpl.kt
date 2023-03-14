@@ -10,11 +10,11 @@ class MovieRepositoryImpl(
 ): MovieRepository {
 
     override suspend fun getMovies(): List<Movie> {
-        return api.getRepositories().toDomain()
+        return alphabeticalSorting(api.getRepositories().toDomain())
     }
 
     override suspend fun getMovies(genre: Genre): List<Movie> {
-        return selectMovieBy(api.getRepositories().toDomain(), genre)
+        return alphabeticalSorting(selectMovieBy(api.getRepositories().toDomain(), genre))
     }
 
     override suspend fun getMovie(id: Int): Movie {
@@ -45,6 +45,10 @@ class MovieRepositoryImpl(
         lateinit var movie: Movie
         films.map { if(it.id == id) movie = it }
         return movie
+    }
+
+    private fun alphabeticalSorting(films: List<Movie>): List<Movie> {
+        return films.sortedBy { it.localizedName }
     }
 
 }

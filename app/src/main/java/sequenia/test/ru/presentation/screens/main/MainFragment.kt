@@ -57,6 +57,7 @@ class MainFragment: Fragment() {
             with(binding) {
                 if(state is MainState.Loaded) mainAdapter.submitList(state.data)
                 loadingView.visibility = if(state is MainState.Loading) View.VISIBLE else View.GONE
+                content.visibility = if(state is MainState.Loaded) View.VISIBLE else View.GONE
             }
         }.observeInLifecycle(this)
     }

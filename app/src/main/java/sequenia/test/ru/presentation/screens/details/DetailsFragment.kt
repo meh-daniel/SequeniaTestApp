@@ -79,6 +79,7 @@ class DetailsFragment: Fragment() {
                 ratingNumber.text = if(state is DetailsState.Loaded) state.data.rating.toString() else getString(R.string.zero_zero)
                 description.text = if(state is DetailsState.Loaded && state.data.description.isNotBlank()) state.data.description else getString(R.string.no_description)
                 loadingView.visibility = if(state is DetailsState.Loading) View.VISIBLE else View.GONE
+                content.visibility = if(state is DetailsState.Loaded) View.VISIBLE else View.GONE
             }
         }.observeInLifecycle(this)
     }
